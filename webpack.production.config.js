@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main',
+  entry: './assets/javascripts/main',
 
   output: {
     path:     __dirname + '/build/',

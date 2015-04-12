@@ -2,10 +2,10 @@
   "name":        "flux-new-way",
   "version":     "0.1.0",
   "description": "A variation of frontend client for https://github.com/KamilLelonek/rails-new-way written with Flux.",
-  "main":        "src/main.jsx",
+  "main":        "assets/javascripts/main.jsx",
   "scripts": {
     "postinstall":        "npm run build",
-    "server":             "nodemon server.js",
+    "start":              "nodemon server.js",
     "build":              "webpack -p --config webpack.production.config.js",
     "test":               "PHANTOMJS_BIN=./node_modules/.bin/phantomjs ./node_modules/karma/bin/karma start karma.config.js",
     "test-cross-browser": "./node_modules/karma/bin/karma start karma.cross-browser.config.js",
