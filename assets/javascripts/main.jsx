@@ -1,4 +1,5 @@
 require('bootstrap-webpack')
+require('whatwg-fetch')
 
 import 'babel-core/polyfill'
 
