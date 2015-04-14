@@ -3,9 +3,6 @@ require('whatwg-fetch')
 
 import 'babel-core/polyfill'
 
-import React  from 'react'
-import Router from 'react-router'
-
 let fetchData = function(routes, params) {
   let data = {}
 
@@ -21,6 +18,8 @@ let fetchData = function(routes, params) {
 }
 
 import AppRouter from "./router"
+import React  from 'react'
+import Router from 'react-router'
 
 Router.run(AppRouter.getRoutes(), Router.HistoryLocation, function(Handler, state) {
   fetchData(state.routes, state.params).then(data => {
