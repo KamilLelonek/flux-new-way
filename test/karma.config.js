@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+var webpackConfig = require('../webpack.local.config.js')
 
 module.exports = function(config) {
   config.set({
@@ -27,25 +27,15 @@ module.exports = function(config) {
 
     webpack: {
       module: {
-        loaders: [
-          { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'}
-        ],
+        loaders: webpackConfig.module.loaders,
         postLoaders: [{
           test: /\.jsx?$/,
           exclude: /(test|node_modules)\//,
           loader: 'istanbul-instrumenter'
         }]
       },
-      resolve: {
-        extensions: ['', '.js', '.jsx']
-      },
-      plugins: [
-        new webpack.DefinePlugin({
-          'environment': {
-            'HOST': JSON.stringify('http://localhost:5000')
-          }
-        })
-      ]
+      resolve: webpackConfig.resolve,
+      plugins: webpackConfig.plugins
     },
 
     webpackMiddleware: {
