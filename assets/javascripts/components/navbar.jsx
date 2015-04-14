@@ -1,13 +1,20 @@
 import React  from 'react'
 import Router from 'react-router'
 
-let Link = Router.Link
+const ReactBootstrap = require('react-bootstrap')
+const Navbar         = ReactBootstrap.Navbar
+const Nav            = ReactBootstrap.Nav
+const NavItemLink    = require('react-router-bootstrap').NavItemLink
 
-export default class Navbar extends React.Component {
+export default class AppNavbar extends React.Component {
   render() {
     return(
-      <nav>
-      </nav>
+      <Navbar brand='Flux New Way' inverse fixedTop>
+        <Nav right>
+          <NavItemLink to="offer-requests">Offer requests</NavItemLink>
+          <NavItemLink to="make-offer-request">Make offer request</NavItemLink>
+        </Nav>
+      </Navbar>
     )
   }
 }

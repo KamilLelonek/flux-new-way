@@ -9,7 +9,10 @@ import Footer from './components/footer'
 export default class AppRouter extends React.Component {
   static getRoutes() {
     return (
-      <Route name='app' path='/' handler={ AppRouter }></Route>
+      <Route          name="app" path="/"       handler={ AppRouter } >
+        <DefaultRoute name="offer-requests"     />
+        <Route        name="make-offer-request" />
+      </Route>
     )
   }
 
