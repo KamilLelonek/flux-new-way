@@ -1,13 +1,13 @@
 import React from 'react'
 
-const ReactBootstrap = require('react-bootstrap')
-const Navbar         = ReactBootstrap.Navbar
-const Nav            = ReactBootstrap.Nav
-const NavItem        = ReactBootstrap.NavItem
+const ReactBootstrap = require('react-bootstrap');
+const Navbar         = ReactBootstrap.Navbar;
+const Nav            = ReactBootstrap.Nav;
+const NavItem        = ReactBootstrap.NavItem;
 
 export default class Footer extends React.Component {
   constructor() {
-    super()
+    super();
     this.API_URL = environment.HOST
   }
 
