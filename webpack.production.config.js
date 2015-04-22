@@ -30,6 +30,9 @@ module.exports = {
       'environment': {
         'HOST': JSON.stringify('https://rails-new-way.herokuapp.com')
       }
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
     })
   ]
-}
+};

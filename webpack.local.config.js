@@ -22,6 +22,9 @@ module.exports = {
       'environment': {
         'HOST': JSON.stringify('http://localhost:3000')
       }
+    }),
+    new webpack.ProvidePlugin({
+      'React': 'react'
     })
   ],
 
