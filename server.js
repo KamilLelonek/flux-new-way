@@ -1,7 +1,7 @@
 var express = require('express');
-var app     = express();
+var app = express();
 
-app.get('/app.js', function(req, res) {
+app.get('/app.js', function (req, res) {
   if (process.env.PRODUCTION) {
     res.sendFile(__dirname + '/build/app.js');
   } else {
@@ -9,23 +9,25 @@ app.get('/app.js', function(req, res) {
   }
 });
 
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
   res.sendFile(__dirname + '/build/index.html');
 });
 
 if (!process.env.PRODUCTION) {
-  var webpack          = require('webpack');
+  var webpack = require('webpack');
   var WebpackDevServer = require('webpack-dev-server');
-  var config           = require('./webpack.local.config');
+  var config = require('./webpack.local.config');
 
   new WebpackDevServer(webpack(config), {
-    publicPath:         config.output.publicPath,
-    hot:                true,
-    noInfo:             true,
+    publicPath: config.output.publicPath,
+    hot: true,
+    noInfo: true,
     historyApiFallback: true
   }).listen(9090, 'localhost', function (err, result) {
-    if (err) { console.log(err); }
-  });
+      if (err) {
+        console.log(err);
+      }
+    });
 }
 
 var port = process.env.PORT || 8080;

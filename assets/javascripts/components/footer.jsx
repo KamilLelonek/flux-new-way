@@ -11,7 +11,7 @@ export default class extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <Navbar fixedBottom>
         <Nav>
           <NavItem href='http://kamil.lelonek.me/'>&copy; {this.currentYear()} Kamil Lelonek</NavItem>

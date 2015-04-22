@@ -1,3 +1,6 @@
 {
-  'fileExtensions': ['.js', '.jsx']
+  'fileExtensions': [
+    '.js',
+    '.jsx'
+  ]
 }
