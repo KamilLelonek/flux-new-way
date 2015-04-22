@@ -1,11 +1,6 @@
-import React from 'react'
+import { Navbar, Nav, NavItem } from 'react-bootstrap'
 
-const ReactBootstrap = require('react-bootstrap');
-const Navbar         = ReactBootstrap.Navbar;
-const Nav            = ReactBootstrap.Nav;
-const NavItem        = ReactBootstrap.NavItem;
-
-export default class Footer extends React.Component {
+export default class extends React.Component {
   constructor() {
     super();
     this.API_URL = environment.HOST

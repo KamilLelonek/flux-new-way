@@ -1,12 +1,8 @@
-import React  from 'react'
-import Router from 'react-router'
+import { RouteHandler } from 'react-router'
+import Navbar           from './navbar'
+import Footer           from './footer'
 
-const RouteHandler = Router.RouteHandler;
-
-import Navbar from './navbar'
-import Footer from './footer'
-
-export default class App extends React.Component {
+export default class extends React.Component {
     render() {
         return (
             <main>
