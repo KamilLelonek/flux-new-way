@@ -50,6 +50,6 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-sinon-chai',
       'karma-phantomjs-launcher'
-    ],
+    ]
   });
-}
+};
