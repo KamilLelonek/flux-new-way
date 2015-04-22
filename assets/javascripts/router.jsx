@@ -1,28 +1,14 @@
 import React  from 'react'
 import Router from 'react-router'
 
-let { Route, DefaultRoute, RouteHandler, Link } = Router
+let { Route, DefaultRoute } = Router;
+let App = require('./components/app');
 
-import Navbar from './components/navbar'
-import Footer from './components/footer'
-
-export default class AppRouter extends React.Component {
-  static getRoutes() {
+export default function () {
     return (
-      <Route          name="app" path="/"       handler={ AppRouter } >
-        <DefaultRoute name="offer-requests"     />
-        <Route        name="make-offer-request" />
-      </Route>
+        <Route name="app" path="/" handler={ App }>
+            <DefaultRoute name="offer-requests" />
+            <Route        name="make-offer-request" />
+        </Route>
     )
-  }
-
-  render() {
-    return (
-      <main>
-        <Navbar/>
-        <RouteHandler {...this.props} />
-        <Footer/>
-      </main>
-    )
-  }
 }
