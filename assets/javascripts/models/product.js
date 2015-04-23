@@ -11,7 +11,7 @@ export default class Product {
     return new Product(
       productJson['id'],
       productJson['quantity'],
-      buildCategoryFromJson(productJson['category'])
+      Product.buildCategoryFromJson(productJson['category'])
     )
   }
 

@@ -15,10 +15,10 @@ export default class OfferRequest {
   static buildFromJson(offerRequestJson) {
     return new OfferRequest(
       offerRequestJson['id'],
-      buildDeliveryFromJson(offerRequestJson['delivery']),
-      buildProductsFromJson(offerRequestJson['products']),
-      buildCompanyFromJson(offerRequestJson),
-      buildCustomerFromJson(offerRequestJson)
+      OfferRequest.buildDeliveryFromJson(offerRequestJson['delivery']),
+      OfferRequest.buildProductsFromJson(offerRequestJson['products']),
+      OfferRequest.buildCompanyFromJson(offerRequestJson),
+      OfferRequest.buildCustomerFromJson(offerRequestJson)
     )
   }
 
@@ -27,7 +27,7 @@ export default class OfferRequest {
   }
 
   static buildProductsFromJson(productsJson) {
-    return productsJson.map(buildProductFromJson)
+    return productsJson.map(OfferRequest.buildProductFromJson)
   }
 
   static buildProductFromJson(productJson) {
