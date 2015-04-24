@@ -1,6 +1,7 @@
 import 'bootstrap-webpack'
 import 'whatwg-fetch'
 import 'babel-core/polyfill'
+import '../stylesheets/main.sass'
 
 let fetchData = routes => {
   let data = {};
