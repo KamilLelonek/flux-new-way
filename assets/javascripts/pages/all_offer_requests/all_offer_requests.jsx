@@ -1,5 +1,6 @@
-import getData      from '../../helpers/get_data'
-import OfferRequest from '../../models/offer_request'
+import getData               from '../../helpers/get_data'
+import OfferRequest          from '../../models/offer_request'
+import OfferRequestComponent from './components/offer_request_component'
 
 export default class AllOfferRequests extends React.Component {
   static fetchData() {
@@ -7,16 +8,18 @@ export default class AllOfferRequests extends React.Component {
   }
 
   componentWillMount() {
-    this.props.data['offer-requests'].map(
+    this.offerRequests = this.props.data['offer-requests'].map(
         offerRequestJsonObject => {
-          return OfferRequest.buildFromJson(offerRequestJsonObject.dump)
+          const offerRequest = OfferRequest.buildFromJson(offerRequestJsonObject.dump);
+          return <OfferRequestComponent key={ offerRequest.id } id={ offerRequest.id } offerRequest={ offerRequest } />
       }
     )
   }
 
   render() {
     return (
-      <div>
+      <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        { this.offerRequests }
       </div>
     )
   }
