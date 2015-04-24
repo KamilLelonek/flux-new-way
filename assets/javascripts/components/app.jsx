@@ -7,7 +7,9 @@ export default class extends React.Component {
     return (
       <main>
         <Navbar />
-        <RouteHandler {...this.props} />
+        <section className="app container">
+          <RouteHandler {...this.props} />
+        </section>
         <Footer />
       </main>
     )
