@@ -1,8 +1,8 @@
 export default class Category {
-  constructor(id, name, oz_capacity) {
-    this.id          = id;
-    this.name        = name;
-    this.oz_capacity = oz_capacity;
+  constructor(id, name, ozCapacity) {
+    this.id         = id;
+    this.name       = name;
+    this.ozCapacity = ozCapacity;
   }
 
   static buildFromJson(categoryJson) {
