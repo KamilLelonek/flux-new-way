@@ -8,7 +8,7 @@ export default class AllOfferRequests extends React.Component {
   }
 
   componentWillMount() {
-    this.offerRequests = this.props.data['offer-requests'].map(
+    this.offerRequests = (this.props.data['offer-requests'] || []).map(
         offerRequestJsonObject => {
           const offerRequest = OfferRequest.buildFromJson(offerRequestJsonObject.dump);
           return <OfferRequestComponent key={ offerRequest.id } id={ offerRequest.id } offerRequest={ offerRequest } />
@@ -25,5 +25,5 @@ export default class AllOfferRequests extends React.Component {
   }
 }
 
-AllOfferRequests.propTypes    = { data: React.PropTypes.object };
+AllOfferRequests.propTypes    = { data: React.PropTypes.object   };
 AllOfferRequests.defaultProps = { data: { 'offer-requests': [] } };
