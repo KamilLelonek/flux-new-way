@@ -27,11 +27,11 @@ export default class OfferRequest {
   }
 
   static buildProductsFromJson(productsJson) {
-    return productsJson.map(OfferRequest.buildProductFromJson)
+    return productsJson.map(product => OfferRequest.buildProductFromJson(product))
   }
 
   static buildProductFromJson(productJson) {
-    Product.buildFromJson(productJson)
+    return Product.buildFromJson(productJson)
   }
 
   static buildCompanyFromJson(companyJson) {
