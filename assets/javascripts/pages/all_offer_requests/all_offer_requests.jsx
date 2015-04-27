@@ -2,6 +2,8 @@ import getData               from '../../helpers/get_data'
 import OfferRequest          from '../../models/offer_request'
 import OfferRequestComponent from './components/offer_request_component'
 
+import jQuery from 'jquery'
+
 export default class AllOfferRequests extends React.Component {
   static fetchData() {
     return getData('/offer_requests');
@@ -14,6 +16,10 @@ export default class AllOfferRequests extends React.Component {
           return <OfferRequestComponent key={ offerRequest.id } id={ offerRequest.id } offerRequest={ offerRequest } />
       }
     )
+  }
+
+  componentDidMount() {
+    jQuery('.collapse').collapse()
   }
 
   render() {
