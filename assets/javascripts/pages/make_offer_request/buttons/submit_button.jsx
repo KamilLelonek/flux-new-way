@@ -1,8 +1,9 @@
-export default class SubmitButton extends React.Component {
+import { Button } from 'react-bootstrap'
+
+export default class extends React.Component {
   render() {
     return (
-      <div>
-      </div>
+      <Button bsStyle='success'>Submit</Button>
     )
   }
 }

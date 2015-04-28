@@ -5,8 +5,7 @@ import CustomerInput from './inputs/customer_input'
 import DeliveryInput from './inputs/delivery_input'
 import ProductsInput from './inputs/products_input'
 
-import SubmitButton from './buttons/submit_button'
-import ResetButton  from './buttons/reset_button'
+import FormButtons  from './buttons/form_buttons'
 
 export default class MakeOfferRequest extends React.Component {
   static fetchData() {
@@ -28,8 +27,7 @@ export default class MakeOfferRequest extends React.Component {
         <CompanyInput  ref='company'  />
         <ProductsInput ref='products' categories={ this.categories }  />
         <DeliveryInput ref='delivery' deliveries={ this.deliveries }  />
-        <ResetButton  />
-        <SubmitButton />
+        <FormButtons />
       </from>
     )
   }
