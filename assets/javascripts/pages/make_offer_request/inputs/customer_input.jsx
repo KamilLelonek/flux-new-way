@@ -1,4 +1,4 @@
-export default class ResetButton extends React.Component {
+export default class CustomerInput extends React.Component {
   render() {
     return (
       <div>
