@@ -1,6 +1,6 @@
 import { Button, Glyphicon } from 'react-bootstrap'
 
-export default class extends React.Component {
+export default class RemoveProductButton extends React.Component {
   removeProduct() {
 
   }
@@ -14,3 +14,5 @@ export default class extends React.Component {
     )
   }
 }
+
+RemoveProductButton.contextTypes = { flux: React.PropTypes.object.isRequired };

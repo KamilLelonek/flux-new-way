@@ -7,6 +7,8 @@ import ProductsInput from './inputs/products_input'
 
 import FormButtons  from './buttons/form_buttons'
 
+import FluxComponent from 'flummox/component'
+
 export default class MakeOfferRequest extends React.Component {
   static fetchData() {
     return Promise.all([
@@ -44,3 +46,5 @@ MakeOfferRequest.childContextTypes = {
   categories: React.PropTypes.array,
   deliveries: React.PropTypes.array
 };
+
+MakeOfferRequest.contextTypes = { flux: React.PropTypes.object.isRequired };
