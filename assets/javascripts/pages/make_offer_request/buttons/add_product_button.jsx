@@ -1,7 +1,13 @@
 import { Button, Glyphicon } from 'react-bootstrap'
 
-export default class extends React.Component {
+export default class AddProductButton extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.productsActions = this.context.flux.getActions('ProductsActions')
+  }
+
   addNewProduct() {
+    this.productsActions['addProduct']()
   }
 
   render() {
@@ -14,3 +20,5 @@ export default class extends React.Component {
     )
   }
 }
+
+AddProductButton.contextTypes = { flux: React.PropTypes.object.isRequired };

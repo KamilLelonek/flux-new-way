@@ -11,7 +11,16 @@ export default class ProductsInput extends React.Component {
   }
 
   setInitialState() {
+    this.productsStore = this.context.flux.getStore('ProductsStore');
     this.state = { products: [<ProductInput { ...this.context } key='0' />] }
+  }
+
+  componentDidMount() {
+    this.productsStore.addListener('change', this.addNewProduct.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.productsStore.removeListener('change', this.addNewProduct.bind(this));
   }
 
   addNewProduct() {
@@ -32,4 +41,8 @@ export default class ProductsInput extends React.Component {
   }
 }
 
-ProductsInput.contextTypes = { categories: React.PropTypes.array };
+ProductsInput.contextTypes = {
+  categories: React.PropTypes.array,
+  flux:       React.PropTypes.object.isRequired
+};
+
