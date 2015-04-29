@@ -5,9 +5,21 @@ import AddProductButton from '../buttons/add_product_button'
 import { Input } from 'react-bootstrap'
 
 export default class ProductsInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { products: [<ProductInput />] }
+  constructor(props, context) {
+    super(props, context);
+    this.setInitialState();
+  }
+
+  setInitialState() {
+    this.state = { products: [<ProductInput { ...this.context } />] }
+  }
+
+  addNewProduct() {
+    this.setState(
+      React.addons.update(this.state, {
+        products: { $push: [<ProductInput { ...this.context } />] }
+      })
+    )
   }
 
   render() {
@@ -20,4 +32,4 @@ export default class ProductsInput extends React.Component {
   }
 }
 
-ProductsInput.propTypes = { categories: React.PropTypes.array };
+ProductsInput.contextTypes = { categories: React.PropTypes.array };
