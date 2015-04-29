@@ -3,13 +3,34 @@ import RemoveProductButton from '../buttons/remove_product_button'
 import CategoryInput from './category_input'
 import QuantityInput from './quantity_input'
 
+import { Input, Row, Col, Well } from 'react-bootstrap'
+
 export default class ProductInput extends React.Component {
   render() {
+    const categories = this.props.categories.map(
+        category => <option value={ category.id } key={ category.id }>{ category.name }</option>
+    );
+
     return (
-      <div>
-      </div>
+      <Well bsSize='small'>
+        <Row>
+          <Col xs={5}>
+            <Input type='select' label='OZ capacity'>
+              { categories }
+            </Input>
+          </Col>
+          <Col xs={4}>
+            <Input type='number' label='Quantity' />
+          </Col>
+          <Col xs={2}>
+            <Input label='Remove'>
+              <RemoveProductButton />
+            </Input>
+          </Col>
+        </Row>
+      </Well>
     )
   }
 }
 
-ProductInput.propTypes = { categories: React.PropTypes.array };
+ProductInput.contextTypes = { categories: React.PropTypes.array };
