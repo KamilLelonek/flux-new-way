@@ -20,16 +20,27 @@ export default class MakeOfferRequest extends React.Component {
     [this.categories, this.deliveries] = props.data['make-offer-request']
   }
 
+  getChildContext() {
+    return {
+      categories: this.categories,
+      deliveries: this.deliveries
+    }
+  }
+
   render() {
     return (
       <from>
         <CustomerInput ref='customer' />
         <CompanyInput  ref='company'  />
-        <ProductsInput ref='products' categories={ this.categories }  />
-        <DeliveryInput ref='delivery' deliveries={ this.deliveries }  />
+        <ProductsInput ref='products' />
+        <DeliveryInput ref='delivery' />
         <FormButtons />
       </from>
     )
   }
 }
 
+MakeOfferRequest.childContextTypes = {
+  categories: React.PropTypes.array,
+  deliveries: React.PropTypes.array
+};
