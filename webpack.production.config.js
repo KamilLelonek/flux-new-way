@@ -32,7 +32,7 @@ module.exports = {
       }
     }),
     new webpack.ProvidePlugin({
-      'React': 'react'
+      'React': 'react/addons'
     })
   ]
 };
