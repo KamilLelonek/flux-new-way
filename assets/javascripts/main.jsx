@@ -4,22 +4,17 @@ import 'babel-core/polyfill'
 import 'sugar'
 import '../stylesheets/main.sass'
 
-let fetchData = routes => {
-  let data = {};
-
-  return Promise.all(
-    routes
-      .filter(route => route.handler.fetchData)
-      .map(
-        route => route.handler.fetchData()
-        .then(response => data[route.name] = response)
-    )
-  ).then(() => data)
-};
-
-import router from './router'
+import fetchData     from './helpers/fetch_data'
+import router        from './router'
+import Flux          from './flux/flux'
+import FluxComponent from 'flummox/component'
 
 router.run((Handler, state) =>
     fetchData(state.routes)
-      .then(data => React.render(<Handler data={ data } />, document.body))
+      .then(data => {
+        React.withContext(
+          { flux: new Flux() },
+          () => React.render(<Handler data={ data } />, document.body)
+        )
+      })
 );
