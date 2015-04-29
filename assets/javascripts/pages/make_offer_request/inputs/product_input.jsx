@@ -1,8 +1,5 @@
 import RemoveProductButton from '../buttons/remove_product_button'
 
-import CategoryInput from './category_input'
-import QuantityInput from './quantity_input'
-
 import { Input, Row, Col, Well } from 'react-bootstrap'
 
 export default class ProductInput extends React.Component {
