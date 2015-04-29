@@ -11,7 +11,7 @@ export default class ProductsInput extends React.Component {
   }
 
   setInitialState() {
-    this.state = { products: [<ProductInput { ...this.context } />] }
+    this.state = { products: [<ProductInput { ...this.context } key='0' />] }
   }
 
   addNewProduct() {
