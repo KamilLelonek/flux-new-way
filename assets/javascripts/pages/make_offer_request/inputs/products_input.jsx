@@ -26,7 +26,7 @@ export default class ProductsInput extends React.Component {
   addNewProduct() {
     this.setState(
       React.addons.update(this.state, {
-        products: { $push: [<ProductInput { ...this.context } />] }
+        products: { $push: [<ProductInput { ...this.context } key={ this.state.products.length } />] }
       })
     )
   }
