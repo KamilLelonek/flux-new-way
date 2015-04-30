@@ -13,6 +13,10 @@ export default class ProductsStore extends Store {
     this.register(productsActionIds['removeProduct'], this.handleRemoveProduct)
   }
 
+  getLastProductId() {
+    return this.state.productsKeys.last()
+  }
+
   setInitialState() {
     this.state = {
       productsKeys: []
