@@ -12,29 +12,26 @@ export default class ProductsInput extends React.Component {
 
   setInitialState() {
     this.productsStore = this.context.flux.getStore('ProductsStore');
-    this.state = { products: [<ProductInput { ...this.context } key='0' />] }
+    this.state = { productsIds: this.productsStore.getLastProductIds() }
   }
 
   componentDidMount() {
-    this.productsStore.addListener('change', this.addNewProduct.bind(this));
+    this.productsStore.addListener('change', this.updateProducts.bind(this));
   }
 
   componentWillUnmount() {
-    this.productsStore.removeListener('change', this.addNewProduct.bind(this));
+    this.productsStore.removeListener('change', this.updateProducts.bind(this));
   }
 
-  addNewProduct() {
-    this.setState(
-      React.addons.update(this.state, {
-        products: { $push: [<ProductInput { ...this.context } key={ this.productsStore.getLastProductId() } id={ this.productsStore.getLastProductId() } />] }
-      })
-    )
+  updateProducts() {
+    this.setState({ productsIds: this.productsStore.getLastProductIds() })
   }
 
   render() {
+    const products = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } />);
     return (
       <Input label='Products' wrapperClassName='wrapper'>
-        { this.state.products }
+        { products }
         <AddProductButton />
       </Input>
     )
