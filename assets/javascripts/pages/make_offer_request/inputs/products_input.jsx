@@ -38,9 +38,7 @@ export default class ProductsInput extends React.Component {
     const products = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } id={ productId } />);
     return (
       <Input label='Products' wrapperClassName='wrapper'>
-        <React.addons.CSSTransitionGroup transitionName='product'>
-          { products }
-        </React.addons.CSSTransitionGroup>
+        { products }
         <AddProductButton />
       </Input>
     )
