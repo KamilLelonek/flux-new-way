@@ -1,4 +1,5 @@
 import { Store } from 'flummox'
+import uuid from 'node-uuid'
 
 export default class ProductsStore extends Store {
   constructor(flux) {
@@ -13,13 +14,13 @@ export default class ProductsStore extends Store {
     this.register(productsActionIds['removeProduct'], this.handleRemoveProduct)
   }
 
-  getLastProductId() {
-    return this.state.productsKeys.last()
+  getLastProductIds() {
+    return this.state.productsKeys
   }
 
   setInitialState() {
     this.state = {
-      productsKeys: []
+      productsKeys: [uuid.v4()]
     }
   }
 
