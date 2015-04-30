@@ -43,6 +43,6 @@ export default class ProductsInput extends React.Component {
 
 ProductsInput.contextTypes = {
   categories: React.PropTypes.array,
-  flux:       React.PropTypes.object.isRequired
+  flux:       React.PropTypes.object
 };
 

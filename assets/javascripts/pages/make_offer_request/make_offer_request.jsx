@@ -47,4 +47,4 @@ MakeOfferRequest.childContextTypes = {
   deliveries: React.PropTypes.array
 };
 
-MakeOfferRequest.contextTypes = { flux: React.PropTypes.object.isRequired };
+MakeOfferRequest.contextTypes = { flux: React.PropTypes.object };

@@ -15,4 +15,4 @@ export default class RemoveProductButton extends React.Component {
   }
 }
 
-RemoveProductButton.contextTypes = { flux: React.PropTypes.object.isRequired };
+RemoveProductButton.contextTypes = { flux: React.PropTypes.object };

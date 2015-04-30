@@ -21,4 +21,4 @@ export default class AddProductButton extends React.Component {
   }
 }
 
-AddProductButton.contextTypes = { flux: React.PropTypes.object.isRequired };
+AddProductButton.contextTypes = { flux: React.PropTypes.object };
