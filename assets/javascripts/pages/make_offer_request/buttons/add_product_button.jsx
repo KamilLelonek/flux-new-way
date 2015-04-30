@@ -6,14 +6,14 @@ export default class AddProductButton extends React.Component {
     this.productsActions = this.context.flux.getActions('ProductsActions')
   }
 
-  addNewProduct() {
+  addProduct() {
     this.productsActions['addProduct']()
   }
 
   render() {
     return (
       <Button bsStyle='info'
-              onClick={ this.addNewProduct.bind(this) }>
+              onClick={ this.addProduct.bind(this) }>
         <Glyphicon glyph='plus' />
         &nbsp;Add a new product
       </Button>
