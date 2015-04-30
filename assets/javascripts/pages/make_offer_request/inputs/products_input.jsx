@@ -7,20 +7,27 @@ import { Input } from 'react-bootstrap'
 export default class ProductsInput extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.setInitialState();
+    this.setInitialState()
   }
 
   setInitialState() {
+    this.resetStore    = this.context.flux.getStore('ResetStore');
     this.productsStore = this.context.flux.getStore('ProductsStore');
     this.state = { productsIds: this.productsStore.getLastProductIds() }
   }
 
   componentDidMount() {
     this.productsStore.addListener('change', this.updateProducts.bind(this));
+    this.resetStore.addListener('change',    this.resetForm.bind(this));
   }
 
   componentWillUnmount() {
     this.productsStore.removeListener('change', this.updateProducts.bind(this));
+    this.resetStore.removeListener('change',    this.resetForm.bind(this));
+  }
+
+  resetForm() {
+    this.productsStore.setInitialState()
   }
 
   updateProducts() {
