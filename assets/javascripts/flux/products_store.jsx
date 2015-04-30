@@ -19,9 +19,9 @@ export default class ProductsStore extends Store {
   }
 
   setInitialState() {
-    this.state = {
+    this.setState({
       productsKeys: [uuid.v4()]
-    }
+    })
   }
 
   handleAddProduct(key) {
