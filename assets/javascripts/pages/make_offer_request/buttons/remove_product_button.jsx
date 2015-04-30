@@ -1,8 +1,13 @@
 import { Button, Glyphicon } from 'react-bootstrap'
 
 export default class RemoveProductButton extends React.Component {
-  removeProduct() {
+  constructor(props, context) {
+    super(props, context);
+    this.productsActions = props.flux.getActions('ProductsActions')
+  }
 
+  removeProduct() {
+    this.productsActions['removeProduct'](this.props.id)
   }
 
   render() {
@@ -15,4 +20,7 @@ export default class RemoveProductButton extends React.Component {
   }
 }
 
-RemoveProductButton.contextTypes = { flux: React.PropTypes.object };
+RemoveProductButton.propTypes = {
+  flux: React.PropTypes.object,
+  id: React.PropTypes.number
+};

@@ -28,7 +28,7 @@ export default class ProductsInput extends React.Component {
   }
 
   render() {
-    const products = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } />);
+    const products = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } id={ productId } />);
     return (
       <Input label='Products' wrapperClassName='wrapper'>
         { products }
