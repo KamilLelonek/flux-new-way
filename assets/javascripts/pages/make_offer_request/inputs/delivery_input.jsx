@@ -22,7 +22,7 @@ export default class DeliveryInput extends React.Component {
   }
 
   resetForm() {
-    console.log('reset DeliveryInput')
+    document.getElementById('option').selectedIndex = 0
   }
 
   buildDeliveries() {
@@ -34,7 +34,7 @@ export default class DeliveryInput extends React.Component {
 
   render() {
     return (
-      <Input type='select' ref='option' label='Delivery option'>
+      <Input type='select' ref='option' label='Delivery option' id='option'>
         { this.deliveries }
       </Input>
     )

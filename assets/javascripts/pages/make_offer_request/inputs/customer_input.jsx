@@ -8,6 +8,10 @@ export default class CustomerInput extends React.Component {
 
   setInitialState() {
     this.resetStore = this.context.flux.getStore('ResetStore');
+    this.state = {
+      name:  '',
+      email: ''
+    }
   }
 
   componentDidMount() {
@@ -19,7 +23,17 @@ export default class CustomerInput extends React.Component {
   }
 
   resetForm() {
-    console.log('reset CustomerInput')
+    this.setState({
+      name:  '',
+      email: ''
+    })
+  }
+
+  handleChange() {
+    this.setState({
+      name:  this.refs.name.getValue(),
+      email: this.refs.email.getValue()
+    })
   }
 
   render() {
@@ -30,10 +44,10 @@ export default class CustomerInput extends React.Component {
       <Input label='Customer details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } ref='name' placeholder='Customer name' />
+            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Customer name' />
           </Col>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconEmail } ref='email' placeholder='Customer email' />
+            <Input type='text' addonBefore={ iconEmail } value={ this.state.email } onChange={ this.handleChange.bind(this) } ref='email' placeholder='Customer email' />
           </Col>
         </Row>
       </Input>

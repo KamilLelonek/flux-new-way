@@ -8,6 +8,11 @@ export default class CompanyInput extends React.Component {
 
   setInitialState() {
     this.resetStore = this.context.flux.getStore('ResetStore');
+    this.state = {
+      name:    '',
+      phone:   '',
+      address: ''
+    }
   }
 
   componentDidMount() {
@@ -19,7 +24,19 @@ export default class CompanyInput extends React.Component {
   }
 
   resetForm() {
-    console.log('reset CompanyInput')
+    this.setState({
+      name:    '',
+      phone:   '',
+      address: ''
+    })
+  }
+
+  handleChange() {
+    this.setState({
+      name:    this.refs.name.getValue(),
+      phone:   this.refs.phone.getValue(),
+      address: this.refs.address.getValue()
+    })
   }
 
   render() {
@@ -31,13 +48,13 @@ export default class CompanyInput extends React.Component {
       <Input label='Company details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } ref='name' placeholder='Company name' />
+            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Company name' />
           </Col>
           <Col xs={6}>
-            <Input type='tel' addonBefore={ iconPhone } ref='phone' placeholder='Company phone' />
+            <Input type='tel' addonBefore={ iconPhone } value={ this.state.phone } onChange={ this.handleChange.bind(this) } ref='phone' placeholder='Company phone' />
           </Col>
         </Row>
-        <Input type='text' addonBefore={ iconAddress } ref='address' placeholder='Company address' />
+        <Input type='text' addonBefore={ iconAddress } value={ this.state.address } onChange={ this.handleChange.bind(this) } ref='address' placeholder='Company address' />
       </Input>
     )
   }
