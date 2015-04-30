@@ -33,4 +33,7 @@ export default class ProductInput extends React.Component {
   }
 }
 
-ProductInput.propTypes = { flux: React.PropTypes.object };
+ProductInput.propTypes = {
+  flux: React.PropTypes.object,
+  id: React.PropTypes.number
+};
