@@ -17,9 +17,26 @@ export default class MakeOfferRequest extends React.Component {
     ])
   }
 
-  constructor(props) {
-    super(props);
-    [this.categories, this.deliveries] = props.data['make-offer-request']
+  constructor(props, context) {
+    super(props, context);
+    this.setInitialState()
+  }
+
+  setInitialState() {
+    [this.categories, this.deliveries] = this.props.data['make-offer-request'];
+    this.submitStore = this.context.flux.getStore('SubmitStore')
+  }
+
+  componentDidMount() {
+    this.submitStore.addListener('change', this.submitForm.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.submitStore.removeListener('change', this.submitForm.bind(this));
+  }
+
+  submitForm() {
+    console.log('submit')
   }
 
   getChildContext() {
@@ -33,7 +50,7 @@ export default class MakeOfferRequest extends React.Component {
     return (
       <from>
         <CustomerInput ref='customer' />
-        <CompanyInput  ref='company'  />
+        <CompanyInput ref='company' />
         <ProductsInput ref='products' />
         <DeliveryInput ref='delivery' />
         <FormButtons />
