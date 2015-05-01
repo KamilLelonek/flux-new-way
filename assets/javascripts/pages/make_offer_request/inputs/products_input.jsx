@@ -35,7 +35,8 @@ export default class ProductsInput extends React.Component {
   }
 
   render() {
-    const products = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } id={ productId } />);
+    const hideRemoveButton = this.state.productsIds.length > 1;
+    const products         = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } id={ productId } hideRemoveButton={ hideRemoveButton } />);
     return (
       <Input label='Products' wrapperClassName='wrapper'>
         { products }

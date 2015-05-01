@@ -1,4 +1,4 @@
-import { Button, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon, Input } from 'react-bootstrap'
 
 export default class RemoveProductButton extends React.Component {
   constructor(props, context) {
@@ -11,16 +11,25 @@ export default class RemoveProductButton extends React.Component {
   }
 
   render() {
+    if(!this.props.hideRemoveButton) return null;
+
     return (
-      <Button bsStyle='warning'
-              onClick={ this.removeProduct.bind(this) } block>
-        <Glyphicon glyph='minus' />
-      </Button>
+      <Input label='Remove'>
+        <Button bsStyle='warning'
+                onClick={ this.removeProduct.bind(this) } block>
+          <Glyphicon glyph='minus' />
+        </Button>
+      </Input>
     )
   }
 }
 
 RemoveProductButton.propTypes = {
   flux: React.PropTypes.object,
-  id: React.PropTypes.number
+  id: React.PropTypes.number,
+  hideRemoveButton: React.PropTypes.bool
 };
+
+
+//{ this.props.displayRemoveButton ?
+//: null }

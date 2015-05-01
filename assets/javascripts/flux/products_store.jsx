@@ -31,8 +31,10 @@ export default class ProductsStore extends Store {
   }
 
   handleRemoveProduct(key) {
-    this.setState({
-      productsKeys: this.state.productsKeys.remove(key)
-    })
+    if(this.state.productsKeys.length > 1) {
+      this.setState({
+        productsKeys: this.state.productsKeys.remove(key)
+      })
+    }
   }
 }

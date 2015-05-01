@@ -42,9 +42,7 @@ export default class ProductInput extends React.Component {
             <Input type='number' min='0' value={ this.state.value } label='Quantity' ref='quantity' onChange={ this.handleChange.bind(this) } bsStyle={ this.validationState() } />
           </Col>
           <Col xs={2}>
-            <Input label='Remove'>
-              <RemoveProductButton { ...this.props }/>
-            </Input>
+            <RemoveProductButton { ...this.props } />
           </Col>
         </Row>
       </Well>
@@ -54,5 +52,6 @@ export default class ProductInput extends React.Component {
 
 ProductInput.propTypes = {
   flux: React.PropTypes.object,
-  id: React.PropTypes.number
+  id: React.PropTypes.number,
+  hideRemoveButton: React.PropTypes.bool
 };
