@@ -3,11 +3,11 @@ import { Button } from 'react-bootstrap'
 export default class ResetButton extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.productsActions = this.context.flux.getActions('ResetActions')
+    this.resetActions = this.context.flux.getActions('ResetActions')
   }
 
   resetForm() {
-    this.productsActions['resetForm']()
+    this.resetActions['resetForm']()
   }
 
   render() {

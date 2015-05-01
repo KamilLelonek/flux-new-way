@@ -1,7 +1,7 @@
 import { Store } from 'flummox'
 import uuid from 'node-uuid'
 
-export default class ProductsStore extends Store {
+export default class extends Store {
   constructor(flux) {
     super();
     this.registerActions(flux);

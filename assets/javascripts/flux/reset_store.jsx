@@ -1,6 +1,6 @@
 import { Store } from 'flummox'
 
-export default class ResetStore extends Store {
+export default class extends Store {
   constructor(flux) {
     super();
     this.registerActions(flux);
