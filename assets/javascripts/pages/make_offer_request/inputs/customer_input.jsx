@@ -36,6 +36,10 @@ export default class CustomerInput extends React.Component {
     })
   }
 
+  getStyle(input) {
+    return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
+  }
+
   render() {
     const iconName  = <Glyphicon glyph='user'     />;
     const iconEmail = <Glyphicon glyph='envelope' />;
@@ -44,10 +48,10 @@ export default class CustomerInput extends React.Component {
       <Input label='Customer details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Customer name' />
+            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Customer name' bsStyle={ this.getStyle('name') } />
           </Col>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconEmail } value={ this.state.email } onChange={ this.handleChange.bind(this) } ref='email' placeholder='Customer email' />
+            <Input type='text' addonBefore={ iconEmail } value={ this.state.email } onChange={ this.handleChange.bind(this) } ref='email' placeholder='Customer email' bsStyle={ this.getStyle('email') } />
           </Col>
         </Row>
       </Input>

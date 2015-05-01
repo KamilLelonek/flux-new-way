@@ -39,6 +39,10 @@ export default class CompanyInput extends React.Component {
     })
   }
 
+  getStyle(input) {
+    return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
+  }
+
   render() {
     const iconName    = <Glyphicon glyph='font'     />;
     const iconPhone   = <Glyphicon glyph='earphone' />;
@@ -48,13 +52,13 @@ export default class CompanyInput extends React.Component {
       <Input label='Company details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Company name' />
+            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Company name' bsStyle={ this.getStyle('name') } />
           </Col>
           <Col xs={6}>
-            <Input type='tel' addonBefore={ iconPhone } value={ this.state.phone } onChange={ this.handleChange.bind(this) } ref='phone' placeholder='Company phone' />
+            <Input type='tel' addonBefore={ iconPhone } value={ this.state.phone } onChange={ this.handleChange.bind(this) } ref='phone' placeholder='Company phone' bsStyle={ this.getStyle('phone') } />
           </Col>
         </Row>
-        <Input type='text' addonBefore={ iconAddress } value={ this.state.address } onChange={ this.handleChange.bind(this) } ref='address' placeholder='Company address' />
+        <Input type='text' addonBefore={ iconAddress } value={ this.state.address } onChange={ this.handleChange.bind(this) } ref='address' placeholder='Company address' bsStyle={ this.getStyle('address') } />
       </Input>
     )
   }
