@@ -8,6 +8,6 @@ export default (
   <Route name='app' path='/' handler={ App }>
     <DefaultRoute name='offer-requests'     handler={ AllOfferRequests } />
     <Route        name='make-offer-request' handler={ MakeOfferRequest } />
-    <Route        name='loading'            handler={ LoadingProgress } />
+    <Route        name='loading'            handler={ LoadingProgress }  />
   </Route>
 )
