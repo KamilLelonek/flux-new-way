@@ -52,7 +52,6 @@ export default class MakeOfferRequest extends React.Component {
   }
 
   validationSuccessful() {
-    this.hideAlert();
     this.buildRequestParams();
     this.context.router.replaceWith('/loading')
   }
@@ -63,13 +62,6 @@ export default class MakeOfferRequest extends React.Component {
       .merge(this.refs.company.getCompanyDetails())
       .merge(this.refs.products.getProductsDetails())
       .merge(this.refs.delivery.getDeliveryDetails())
-  }
-
-  hideAlert() {
-    this.setState({
-      showAlert:    false,
-      alertMessage: ''
-    })
   }
 
   validate() {
