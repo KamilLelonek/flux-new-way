@@ -50,6 +50,13 @@ export default class CustomerInput extends React.Component {
     )
   }
 
+  getCustomerDetails() {
+    return {
+      customer_name:  this.refs['name'].getValue(),
+      customer_email: this.refs['email'].getValue()
+    }
+  }
+
   getStyle(input) {
     return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
   }

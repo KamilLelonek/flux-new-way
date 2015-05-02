@@ -55,6 +55,14 @@ export default class CompanyInput extends React.Component {
     )
   }
 
+  getCompanyDetails() {
+    return {
+      company_name:    this.refs['name'].getValue(),
+      company_phone:   this.refs['phone'].getValue(),
+      company_address: this.refs['address'].getValue()
+    }
+  }
+
   getStyle(input) {
     return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
   }

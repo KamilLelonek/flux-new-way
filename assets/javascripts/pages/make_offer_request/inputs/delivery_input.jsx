@@ -32,6 +32,12 @@ export default class DeliveryInput extends React.Component {
     })
   }
 
+  getDeliveryDetails() {
+    return {
+      delivery_id: this.refs['option'].getValue()
+    }
+  }
+
   render() {
     return (
       <Input type='select' ref='option' label='Delivery option' id='option'>

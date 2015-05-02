@@ -41,12 +41,19 @@ export default class ProductInput extends React.Component {
     )
   }
 
+  getProductDetails() {
+    return {
+      quantity:    this.refs.quantity.getValue(),
+      category_id: this.refs.select.getValue()
+    }
+  }
+
   render() {
     return (
       <Well bsSize='small'>
         <Row>
           <Col xs={5}>
-            <Input type='select' label='OZ capacity'>
+            <Input type='select' ref='select' label='OZ capacity'>
               { this.categories }
             </Input>
           </Col>

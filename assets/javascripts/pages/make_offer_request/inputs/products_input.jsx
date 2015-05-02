@@ -38,6 +38,12 @@ export default class ProductsInput extends React.Component {
     this.setState({ productsIds: this.productsStore.getLastProductIds() })
   }
 
+  getProductsDetails() {
+    return {
+      products: Object.keys(this.refs).map(reference_name => this.refs[reference_name].getProductDetails())
+    }
+  }
+
   render() {
     const hideRemoveButton = this.state.productsIds.length > 1;
     const products         = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } ref={ productId } id={ productId } hideRemoveButton={ hideRemoveButton } />);
