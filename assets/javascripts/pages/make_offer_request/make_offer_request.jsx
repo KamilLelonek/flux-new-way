@@ -9,7 +9,7 @@ import FormButtons  from './buttons/form_buttons'
 
 import ValidationAlert from './components/validation_alert'
 
-import FluxComponent from 'flummox/component'
+import Router from 'react-router'
 
 export default class MakeOfferRequest extends React.Component {
   static fetchData() {
@@ -52,7 +52,8 @@ export default class MakeOfferRequest extends React.Component {
   }
 
   validationSuccessful() {
-    this.hideAlert()
+    this.hideAlert();
+    this.context.router.replaceWith('/loading')
   }
 
   hideAlert() {
@@ -96,4 +97,7 @@ MakeOfferRequest.childContextTypes = {
   deliveries: React.PropTypes.array
 };
 
-MakeOfferRequest.contextTypes = { flux: React.PropTypes.object };
+MakeOfferRequest.contextTypes = {
+  flux:   React.PropTypes.object,
+  router: React.PropTypes.func
+};
