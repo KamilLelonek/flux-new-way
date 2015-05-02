@@ -30,13 +30,17 @@ export default class ProductsInput extends React.Component {
     this.productsStore.setInitialState()
   }
 
+  validate() {
+    return Promise.all(Object.keys(this.refs).map(reference_name => this.refs[reference_name].validate()));
+  }
+
   updateProducts() {
     this.setState({ productsIds: this.productsStore.getLastProductIds() })
   }
 
   render() {
     const hideRemoveButton = this.state.productsIds.length > 1;
-    const products         = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } id={ productId } hideRemoveButton={ hideRemoveButton } />);
+    const products         = this.state.productsIds.map(productId => <ProductInput { ...this.context } key={ productId } ref={ productId } id={ productId } hideRemoveButton={ hideRemoveButton } />);
     return (
       <Input label='Products' wrapperClassName='wrapper'>
         { products }

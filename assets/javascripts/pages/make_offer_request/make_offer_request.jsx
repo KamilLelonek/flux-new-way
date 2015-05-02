@@ -7,6 +7,8 @@ import ProductsInput from './inputs/products_input'
 
 import FormButtons  from './buttons/form_buttons'
 
+import ValidationAlert from './components/validation_alert'
+
 import FluxComponent from 'flummox/component'
 
 export default class MakeOfferRequest extends React.Component {
@@ -24,7 +26,8 @@ export default class MakeOfferRequest extends React.Component {
 
   setInitialState() {
     [this.categories, this.deliveries] = this.props.data['make-offer-request'];
-    this.submitStore = this.context.flux.getStore('SubmitStore')
+    this.submitStore                   = this.context.flux.getStore('SubmitStore')
+    this.state                         = { showAlert: false, alertMessage: '' }
   }
 
   componentDidMount() {
@@ -36,7 +39,35 @@ export default class MakeOfferRequest extends React.Component {
   }
 
   submitForm() {
-    console.log('submit')
+    this.validate()
+      .catch(e => this.showAlert(e))
+      .then(this.validationSuccessful.bind(this))
+  }
+
+  showAlert(error) {
+    this.setState({
+      showAlert:    true,
+      alertMessage: error
+    })
+  }
+
+  validationSuccessful() {
+    this.hideAlert()
+  }
+
+  hideAlert() {
+    this.setState({
+      showAlert:    false,
+      alertMessage: ''
+    })
+  }
+
+  validate() {
+    return Promise.all([
+      this.refs['customer'].validate(),
+      this.refs['company'].validate(),
+      this.refs['products'].validate()
+    ])
   }
 
   getChildContext() {
@@ -50,9 +81,10 @@ export default class MakeOfferRequest extends React.Component {
     return (
       <from>
         <CustomerInput ref='customer' />
-        <CompanyInput ref='company' />
+        <CompanyInput  ref='company'  />
         <ProductsInput ref='products' />
         <DeliveryInput ref='delivery' />
+        { this.state.showAlert ? <ValidationAlert { ...this.state } /> : null }
         <FormButtons />
       </from>
     )

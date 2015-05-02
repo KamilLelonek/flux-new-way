@@ -29,6 +29,18 @@ export default class ProductInput extends React.Component {
     return this.state.value > 0 ? '' : 'error'
   }
 
+  validate() {
+    return new Promise(
+      (resolve, reject) => {
+        if (this.state.value > 0) {
+          resolve()
+        } else {
+          reject('You must add at least one product!')
+        }
+      }
+    )
+  }
+
   render() {
     return (
       <Well bsSize='small'>

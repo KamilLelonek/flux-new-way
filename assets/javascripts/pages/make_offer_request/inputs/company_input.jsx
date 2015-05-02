@@ -39,6 +39,22 @@ export default class CompanyInput extends React.Component {
     })
   }
 
+  validate() {
+    return new Promise(
+      (resolve, reject) => {
+        if (!this.refs['name'].getValue()) {
+          reject('Comapny name must be filled!')
+        } else if (!this.refs['phone'].getValue()) {
+          reject('Company phone must be filled!')
+        } else if (!this.refs['address'].getValue()) {
+          reject('Company address must be filled!')
+        } else {
+          resolve()
+        }
+      }
+    )
+  }
+
   getStyle(input) {
     return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
   }

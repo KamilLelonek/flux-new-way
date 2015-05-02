@@ -36,6 +36,20 @@ export default class CustomerInput extends React.Component {
     })
   }
 
+  validate() {
+    return new Promise(
+      (resolve, reject) => {
+        if (!this.refs['name'].getValue()) {
+          reject('Customer name must be filled!')
+        } else if (!this.refs['email'].getValue()) {
+          reject('Customer email must be filled!')
+        } else {
+          resolve();
+        }
+      }
+    )
+  }
+
   getStyle(input) {
     return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
   }
