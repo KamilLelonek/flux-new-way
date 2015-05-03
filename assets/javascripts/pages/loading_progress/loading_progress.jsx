@@ -6,12 +6,18 @@ export default class LoadingProgres extends React.Component {
     this.setInitialState()
   }
 
+  componentWillMount() {
+    if(!this.requestParams) {
+      this.context.router.replaceWith('/')
+    }
+  }
+
   setInitialState() {
-    this.requestStore = this.context.flux.getStore('RequestStore');
+    const requestStore  = this.context.flux.getStore('RequestStore');
+    this.requestParams  = requestStore['getStoredRequest']()
   }
 
   render() {
-    console.log(this.requestStore['getStoredRequest']());
     return (
       <Pager>
         <ProgressBar active now={ 100 } bsStyle='success' />
@@ -20,7 +26,7 @@ export default class LoadingProgres extends React.Component {
   }
 }
 
-LoadingProgres.willTransitionTo = (transition, element) => {
+LoadingProgres.contextTypes = {
+  flux:   React.PropTypes.object,
+  router: React.PropTypes.func
 };
-
-LoadingProgres.contextTypes = { flux: React.PropTypes.object };
