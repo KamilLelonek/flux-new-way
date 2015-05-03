@@ -25,11 +25,7 @@ export default class RemoveProductButton extends React.Component {
 }
 
 RemoveProductButton.propTypes = {
-  flux: React.PropTypes.object,
-  id: React.PropTypes.number,
+  flux:             React.PropTypes.object,
+  id:               React.PropTypes.string,
   hideRemoveButton: React.PropTypes.bool
 };
-
-
-//{ this.props.displayRemoveButton ?
-//: null }
