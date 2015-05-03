@@ -9,12 +9,16 @@ import ResetStore   from './reset_store'
 import SubmitActions from './submit_actions'
 import SubmitStore   from './submit_store'
 
+import RequestActions from './request_actions'
+import RequestStore   from './request_store'
+
 export default class extends Flummox {
   constructor() {
     super();
     this.createProductsPart();
     this.createResetPart();
     this.createSubmitPart();
+    this.createRequestPart();
   }
 
   createProductsPart() {
@@ -30,5 +34,10 @@ export default class extends Flummox {
   createSubmitPart() {
     this.createActions('SubmitActions', SubmitActions);
     this.createStore('SubmitStore',     SubmitStore, this)
+  }
+
+  createRequestPart() {
+    this.createActions('RequestActions', RequestActions);
+    this.createStore('RequestStore',     RequestStore, this)
   }
 }
