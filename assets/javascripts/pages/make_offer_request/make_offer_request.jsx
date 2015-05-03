@@ -26,6 +26,7 @@ export default class MakeOfferRequest extends React.Component {
 
   setInitialState() {
     [this.categories, this.deliveries] = this.props.data['make-offer-request'];
+    this.requestActions                = this.context.flux.getActions('RequestActions');
     this.submitStore                   = this.context.flux.getStore('SubmitStore');
     this.state                         = { showAlert: false, alertMessage: '' }
   }
@@ -52,12 +53,16 @@ export default class MakeOfferRequest extends React.Component {
   }
 
   validationSuccessful() {
-    this.buildRequestParams();
+    this.storeRequest();
     this.context.router.replaceWith('/loading')
   }
 
+  storeRequest() {
+    this.requestActions['storeRequest'](this.buildRequestParams())
+  }
+
   buildRequestParams() {
-    Object
+    return Object
       .extended(this.refs.customer.getCustomerDetails())
       .merge(this.refs.company.getCompanyDetails())
       .merge(this.refs.products.getProductsDetails())
