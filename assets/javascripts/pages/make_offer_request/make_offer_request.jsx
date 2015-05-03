@@ -28,27 +28,39 @@ export default class MakeOfferRequest extends React.Component {
     [this.categories, this.deliveries] = this.props.data['make-offer-request'];
     this.requestActions                = this.context.flux.getActions('RequestActions');
     this.submitStore                   = this.context.flux.getStore('SubmitStore');
+    this.resetStore                    = this.context.flux.getStore('ResetStore');
     this.state                         = { showAlert: false, alertMessage: '' }
   }
 
   componentDidMount() {
     this.submitStore.addListener('change', this.submitForm.bind(this));
+    this.resetStore.addListener('change',  this.resetForm.bind(this));
   }
 
   componentWillUnmount() {
     this.submitStore.removeListener('change', this.submitForm.bind(this));
+    this.resetStore.removeListener('change',  this.resetForm.bind(this));
   }
 
   submitForm() {
     this.validate()
-      .catch(e => this.showAlert(e))
-      .then(this.validationSuccessful.bind(this))
+      .then(
+        this.validationSuccessful.bind(this),
+        e => this.showAlert(e)
+      )
   }
 
   showAlert(error) {
     this.setState({
       showAlert:    true,
       alertMessage: error
+    })
+  }
+
+  resetForm() {
+    this.setState({
+      showAlert:    false,
+      alertMessage: ''
     })
   }
 
