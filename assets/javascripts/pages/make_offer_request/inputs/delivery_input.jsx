@@ -2,6 +2,8 @@ import { Input } from 'react-bootstrap'
 
 import Delivery from '../../../models/delivery'
 
+import reactMixin from 'react-mixin'
+
 export default class DeliveryInput extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -10,6 +12,7 @@ export default class DeliveryInput extends React.Component {
   }
 
   setInitialState() {
+    this.state      = { delivery_id: this.context.deliveries.last().id };
     this.resetStore = this.context.flux.getStore('ResetStore');
   }
 
@@ -33,14 +36,12 @@ export default class DeliveryInput extends React.Component {
   }
 
   getDeliveryDetails() {
-    return {
-      delivery_id: this.refs['option'].getValue()
-    }
+    return { delivery_id: this.state.delivery_id }
   }
 
   render() {
     return (
-      <Input type='select' ref='option' label='Delivery option' id='option'>
+      <Input type='select' ref='option' label='Delivery option' id='option' valueLink={ this.linkState('delivery_id') } >
         { this.deliveries }
       </Input>
     )
@@ -51,3 +52,5 @@ DeliveryInput.contextTypes = {
   deliveries: React.PropTypes.array,
   flux:       React.PropTypes.object
 };
+
+reactMixin(DeliveryInput.prototype, React.addons.LinkedStateMixin);

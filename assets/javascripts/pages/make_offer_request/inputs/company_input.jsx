@@ -1,5 +1,7 @@
 import { Row, Col, Input, Glyphicon } from 'react-bootstrap'
 
+import reactMixin from 'react-mixin'
+
 export default class CompanyInput extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -9,9 +11,9 @@ export default class CompanyInput extends React.Component {
   setInitialState() {
     this.resetStore = this.context.flux.getStore('ResetStore');
     this.state = {
-      name:    '',
-      phone:   '',
-      address: ''
+      name:    null,
+      phone:   null,
+      address: null
     }
   }
 
@@ -25,28 +27,20 @@ export default class CompanyInput extends React.Component {
 
   resetForm() {
     this.setState({
-      name:    '',
-      phone:   '',
-      address: ''
-    })
-  }
-
-  handleChange() {
-    this.setState({
-      name:    this.refs.name.getValue(),
-      phone:   this.refs.phone.getValue(),
-      address: this.refs.address.getValue()
+      name:    null,
+      phone:   null,
+      address: null
     })
   }
 
   validate() {
     return new Promise(
       (resolve, reject) => {
-        if (!this.refs['name'].getValue()) {
+        if (!this.state.name) {
           reject('Comapny name must be filled!')
-        } else if (!this.refs['phone'].getValue()) {
+        } else if (!this.state.phone) {
           reject('Company phone must be filled!')
-        } else if (!this.refs['address'].getValue()) {
+        } else if (!this.state.address) {
           reject('Company address must be filled!')
         } else {
           resolve()
@@ -57,14 +51,14 @@ export default class CompanyInput extends React.Component {
 
   getCompanyDetails() {
     return {
-      company_name:    this.refs['name'].getValue(),
-      company_phone:   this.refs['phone'].getValue(),
-      company_address: this.refs['address'].getValue()
+      company_name:    this.state.name,
+      company_phone:   this.state.phone,
+      company_address: this.state.address
     }
   }
 
   getStyle(input) {
-    return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
+    return this.state[input] !== null ? this.state[input].length > 0 ? 'success' : 'error' : null
   }
 
   render() {
@@ -76,16 +70,18 @@ export default class CompanyInput extends React.Component {
       <Input label='Company details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Company name' bsStyle={ this.getStyle('name') } />
+            <Input type='text' placeholder='Company name' valueLink={ this.linkState('name') } addonBefore={ iconName  }  bsStyle={ this.getStyle('name') } />
           </Col>
           <Col xs={6}>
-            <Input type='tel' addonBefore={ iconPhone } value={ this.state.phone } onChange={ this.handleChange.bind(this) } ref='phone' placeholder='Company phone' bsStyle={ this.getStyle('phone') } />
+            <Input type='tel' placeholder='Company phone' valueLink={ this.linkState('phone') } addonBefore={ iconPhone } bsStyle={ this.getStyle('phone') } />
           </Col>
         </Row>
-        <Input type='text' addonBefore={ iconAddress } value={ this.state.address } onChange={ this.handleChange.bind(this) } ref='address' placeholder='Company address' bsStyle={ this.getStyle('address') } />
+        <Input type='text' placeholder='Company address' valueLink={ this.linkState('address') } addonBefore={ iconAddress } bsStyle={ this.getStyle('address') } />
       </Input>
     )
   }
 }
 
 CompanyInput.contextTypes = { flux: React.PropTypes.object };
+
+reactMixin(CompanyInput.prototype, React.addons.LinkedStateMixin);

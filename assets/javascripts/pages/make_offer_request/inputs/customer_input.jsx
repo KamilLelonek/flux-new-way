@@ -1,5 +1,7 @@
 import { Row, Col, Input, Glyphicon } from 'react-bootstrap'
 
+import reactMixin from 'react-mixin'
+
 export default class CustomerInput extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -9,8 +11,8 @@ export default class CustomerInput extends React.Component {
   setInitialState() {
     this.resetStore = this.context.flux.getStore('ResetStore');
     this.state = {
-      name:  '',
-      email: ''
+      name:  null,
+      email: null
     }
   }
 
@@ -24,24 +26,17 @@ export default class CustomerInput extends React.Component {
 
   resetForm() {
     this.setState({
-      name:  '',
-      email: ''
-    })
-  }
-
-  handleChange() {
-    this.setState({
-      name:  this.refs.name.getValue(),
-      email: this.refs.email.getValue()
+      name:  null,
+      email: null
     })
   }
 
   validate() {
     return new Promise(
       (resolve, reject) => {
-        if (!this.refs['name'].getValue()) {
+        if (!this.state.name) {
           reject('Customer name must be filled!')
-        } else if (!this.refs['email'].getValue()) {
+        } else if (!this.state.email) {
           reject('Customer email must be filled!')
         } else {
           resolve();
@@ -52,13 +47,13 @@ export default class CustomerInput extends React.Component {
 
   getCustomerDetails() {
     return {
-      customer_name:  this.refs['name'].getValue(),
-      customer_email: this.refs['email'].getValue()
+      customer_name:  this.state.name,
+      customer_email: this.state.email
     }
   }
 
   getStyle(input) {
-    return this.refs[input] ? this.refs[input].getValue().length ? 'success' : 'error' : ''
+    return this.state[input] !== null ? this.state[input].length > 0 ? 'success' : 'error' : null
   }
 
   render() {
@@ -69,10 +64,10 @@ export default class CustomerInput extends React.Component {
       <Input label='Customer details' wrapperClassName='wrapper'>
         <Row>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconName  } value={ this.state.name } onChange={ this.handleChange.bind(this) } ref='name' placeholder='Customer name' bsStyle={ this.getStyle('name') } />
+            <Input type='text' placeholder='Customer name' valueLink={ this.linkState('name') } addonBefore={ iconName } bsStyle={ this.getStyle('name') } />
           </Col>
           <Col xs={6}>
-            <Input type='text' addonBefore={ iconEmail } value={ this.state.email } onChange={ this.handleChange.bind(this) } ref='email' placeholder='Customer email' bsStyle={ this.getStyle('email') } />
+            <Input type='text' placeholder='Customer email' valueLink={ this.linkState('email') } addonBefore={ iconEmail } bsStyle={ this.getStyle('email') } />
           </Col>
         </Row>
       </Input>
@@ -81,3 +76,6 @@ export default class CustomerInput extends React.Component {
 }
 
 CustomerInput.contextTypes = { flux: React.PropTypes.object };
+
+reactMixin(CustomerInput.prototype, React.addons.LinkedStateMixin);
+

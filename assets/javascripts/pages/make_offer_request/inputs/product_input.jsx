@@ -2,11 +2,20 @@ import RemoveProductButton from '../buttons/remove_product_button'
 
 import { Input, Row, Col, Well } from 'react-bootstrap'
 
+import reactMixin from 'react-mixin'
+
 export default class ProductInput extends React.Component {
   constructor(props, context) {
     super(props, context);
+    this.setInitialState()
+  }
+
+  setInitialState() {
     this.prepareCategories();
-    this.setInitialState();
+    this.state = {
+      quantity:    1,
+      category_id: this.props.categories.first().id
+    }
   }
 
   prepareCategories() {
@@ -15,24 +24,14 @@ export default class ProductInput extends React.Component {
     )
   }
 
-  setInitialState() {
-    this.state = { value: 1 }
-  }
-
-  handleChange() {
-    this.setState({
-      value: this.refs.quantity.getValue()
-    })
-  }
-
   validationState() {
-    return this.state.value > 0 ? '' : 'error'
+    return this.state.quantity > 0 ? '' : 'error'
   }
 
   validate() {
     return new Promise(
       (resolve, reject) => {
-        if (this.state.value > 0) {
+        if (this.state.quantity > 0) {
           resolve()
         } else {
           reject('You must add at least one product!')
@@ -43,8 +42,8 @@ export default class ProductInput extends React.Component {
 
   getProductDetails() {
     return {
-      quantity:    this.refs.quantity.getValue(),
-      category_id: this.refs.select.getValue()
+      quantity:    this.state.quantity,
+      category_id: this.state.category_id
     }
   }
 
@@ -53,12 +52,12 @@ export default class ProductInput extends React.Component {
       <Well bsSize='small'>
         <Row>
           <Col xs={5}>
-            <Input type='select' ref='select' label='OZ capacity'>
+            <Input type='select' label='Size' valueLink={ this.linkState('category_id') }>
               { this.categories }
             </Input>
           </Col>
           <Col xs={4}>
-            <Input type='number' min='0' value={ this.state.value } label='Quantity' ref='quantity' onChange={ this.handleChange.bind(this) } bsStyle={ this.validationState() } />
+            <Input type='number' label='Quantity' min='0' valueLink={ this.linkState('quantity') } value={ this.state.value } bsStyle={ this.validationState() } />
           </Col>
           <Col xs={2}>
             <RemoveProductButton { ...this.props } />
@@ -71,6 +70,7 @@ export default class ProductInput extends React.Component {
 
 ProductInput.propTypes = {
   flux: React.PropTypes.object,
-  id: React.PropTypes.number,
-  hideRemoveButton: React.PropTypes.bool
+  id:   React.PropTypes.string
 };
+
+reactMixin(ProductInput.prototype, React.addons.LinkedStateMixin);
