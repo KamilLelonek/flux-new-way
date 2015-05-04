@@ -1,5 +1,5 @@
-# Artefacts
+# Build
 build/
 
-# Dependencies
+# Dependency directory
 node_modules
