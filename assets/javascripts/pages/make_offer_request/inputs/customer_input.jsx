@@ -9,6 +9,7 @@ export default class CustomerInput extends React.Component {
   }
 
   setInitialState() {
+    this.emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     this.resetStore = this.context.flux.getStore('ResetStore');
     this.state = {
       name:  null,
@@ -38,6 +39,8 @@ export default class CustomerInput extends React.Component {
           reject('Customer name must be filled!')
         } else if (!this.state.email) {
           reject('Customer email must be filled!')
+        } else if (!this.state.email.match(this.emailRegex)) {
+          reject('Customer email must in a correct format (email@example.com)!')
         } else {
           resolve();
         }
