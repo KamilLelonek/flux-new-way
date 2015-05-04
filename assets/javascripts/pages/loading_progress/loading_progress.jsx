@@ -1,20 +1,29 @@
 import { Pager, ProgressBar } from 'react-bootstrap'
 
+import postData from '../../helpers/post_data'
+
 export default class LoadingProgres extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.setInitialState()
   }
 
+  setInitialState() {
+    const requestStore = this.context.flux.getStore('RequestStore');
+    this.requestParams = requestStore['getStoredRequest']()
+  }
+
   componentWillMount() {
-    if(!this.requestParams) {
+    if (!this.requestParams) {
       this.context.router.replaceWith('/')
+    } else {
+      this.makeRequest()
     }
   }
 
-  setInitialState() {
-    const requestStore  = this.context.flux.getStore('RequestStore');
-    this.requestParams  = requestStore['getStoredRequest']()
+  makeRequest() {
+    postData('/offer_requests', this.requestParams)
+      .then(() => this.context.router.replaceWith('/'))
   }
 
   render() {
@@ -27,6 +36,6 @@ export default class LoadingProgres extends React.Component {
 }
 
 LoadingProgres.contextTypes = {
-  flux:   React.PropTypes.object,
+  flux: React.PropTypes.object,
   router: React.PropTypes.func
 };
