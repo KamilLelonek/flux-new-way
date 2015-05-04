@@ -35,3 +35,9 @@ To build minified production app run:
 To remove generated `build/app.js` run:
 
     npm run clean
+
+# Demo
+
+Website is available under:
+
+http://squixy.zz.mu/flux-new-way
