@@ -1,5 +1,6 @@
 # Build
-build/
+build/app.js
+build/*.eot
 
 # Dependency directory
 node_modules
