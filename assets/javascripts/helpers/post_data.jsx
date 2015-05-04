@@ -6,7 +6,7 @@ export default ((endpoint, body) =>
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
-  }).catch(exception => {
-    console.log('request failed', exception)
   })
+    .then(response => response.json())
+    .then(data => console.log('Request finished with response', data['table']))
 )
