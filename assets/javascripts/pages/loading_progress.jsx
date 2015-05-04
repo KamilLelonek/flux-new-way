@@ -1,6 +1,6 @@
 import { Pager, ProgressBar } from 'react-bootstrap'
 
-import postData from '../../helpers/post_data'
+import postData from '../helpers/post_data'
 
 export default class LoadingProgres extends React.Component {
   constructor(props, context) {
