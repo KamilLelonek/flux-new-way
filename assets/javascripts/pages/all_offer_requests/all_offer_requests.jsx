@@ -1,6 +1,7 @@
-import getData               from '../../helpers/get_data'
-import OfferRequest          from '../../models/offer_request'
-import OfferRequestComponent from './components/offer_request_component'
+import getData                  from '../../helpers/get_data'
+import OfferRequest             from '../../models/offer_request'
+import OfferRequestComponent    from './components/offer_request_component'
+import NoOfferRequestsComponent from './components/no_offer_requests_components'
 
 import jQuery from 'jquery'
 
@@ -25,7 +26,7 @@ export default class AllOfferRequests extends React.Component {
   render() {
     return (
       <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        { this.offerRequests }
+        { this.offerRequests.length ? this.offerRequests : <NoOfferRequestsComponent /> }
       </div>
     )
   }
