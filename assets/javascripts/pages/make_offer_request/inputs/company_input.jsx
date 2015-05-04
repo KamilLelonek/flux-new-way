@@ -9,6 +9,7 @@ export default class CompanyInput extends React.Component {
   }
 
   setInitialState() {
+    this.phoneRegex = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
     this.resetStore = this.context.flux.getStore('ResetStore');
     this.state = {
       name:    null,
@@ -40,6 +41,8 @@ export default class CompanyInput extends React.Component {
           reject('Comapny name must be filled!')
         } else if (!this.state.phone) {
           reject('Company phone must be filled!')
+        } else if (!this.state.phone.match(this.phoneRegex)) {
+          reject('Company phone must be in a correct format (787-850-3250)!')
         } else if (!this.state.address) {
           reject('Company address must be filled!')
         } else {
