@@ -1,4 +1,4 @@
-import { Route, DefaultRoute, NotFoundRoute } from 'react-router'
+import { Route, DefaultRoute, Redirect } from 'react-router'
 
 import App from './components/app'
 
@@ -11,6 +11,7 @@ export default (
     <DefaultRoute name='offer-requests'     handler={ AllOfferRequests } />
     <Route        name='make-offer-request' handler={ MakeOfferRequest } />
     <Route        name='loading'            handler={ LoadingProgress  } />
-    <NotFoundRoute                          handler={ AllOfferRequests } />
+
+    <Redirect from='/flux-new-way/' to='offer-requests' />
   </Route>
 )
