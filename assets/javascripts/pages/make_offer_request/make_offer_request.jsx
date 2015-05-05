@@ -1,4 +1,4 @@
-import getData from '../../helpers/get_data'
+import getData from '../../http_requests/get_data'
 
 import CompanyInput  from './inputs/company_input'
 import CustomerInput from './inputs/customer_input'

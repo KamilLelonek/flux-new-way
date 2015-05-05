@@ -1,4 +1,4 @@
-import getData                  from '../../helpers/get_data'
+import getData                  from '../../http_requests/get_data'
 import OfferRequest             from '../../models/offer_request'
 import OfferRequestComponent    from './components/offer_request_component'
 import NoOfferRequestsComponent from './components/no_offer_requests_components'

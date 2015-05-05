@@ -4,7 +4,7 @@ import 'babel-core/polyfill'
 import 'sugar'
 import '../stylesheets/main.sass'
 
-import fetchData from './helpers/fetch_data'
+import fetchData from './http_requests/fetch_data'
 import router    from './router'
 import Flux      from './flux/flux'
 
