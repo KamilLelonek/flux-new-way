@@ -1,4 +1,4 @@
-var webpackConfig = require('../webpack.local.config.js')
+var webpackConfig = require('../webpack.local.config.js');
 
 module.exports = function(config) {
   config.set({
@@ -29,9 +29,9 @@ module.exports = function(config) {
       module: {
         loaders: webpackConfig.module.loaders,
         postLoaders: [{
-          test: /\.jsx?$/,
+          test:    /\.jsx?$/,
           exclude: /(test|node_modules)\//,
-          loader: 'istanbul-instrumenter'
+          loader:  'istanbul-instrumenter'
         }]
       },
       resolve: webpackConfig.resolve,
@@ -51,5 +51,5 @@ module.exports = function(config) {
       'karma-sinon-chai',
       'karma-phantomjs-launcher'
     ]
-  });
+  })
 };
