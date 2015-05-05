@@ -8,5 +8,4 @@ export default ((endpoint, body) =>
     body: JSON.stringify(body)
   })
     .then(response => response.json())
-    .then(data => console.log('Request finished with response', data['table']))
 )
