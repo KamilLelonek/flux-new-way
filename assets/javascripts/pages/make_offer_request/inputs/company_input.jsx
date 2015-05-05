@@ -38,7 +38,7 @@ export default class CompanyInput extends React.Component {
     return new Promise(
       (resolve, reject) => {
         if (!this.state.name) {
-          reject('Comapny name must be filled!')
+          reject('Company name must be filled!')
         } else if (!this.state.phone) {
           reject('Company phone must be filled!')
         } else if (!this.state.phone.match(this.phoneRegex)) {
