@@ -4,3 +4,6 @@ build/*.eot
 
 # Dependency directory
 node_modules
+
+# Coverage results
+coverage
