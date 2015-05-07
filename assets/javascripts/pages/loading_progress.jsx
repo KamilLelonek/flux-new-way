@@ -36,6 +36,6 @@ export default class LoadingProgres extends React.Component {
 }
 
 LoadingProgres.contextTypes = {
-  flux: React.PropTypes.object,
-  router: React.PropTypes.func
+  flux:   React.PropTypes.object,
+  router: React.PropTypes.object
 };

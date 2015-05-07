@@ -21,7 +21,7 @@ export default (Component, props, stubs) => {
 
   return React.createClass({
     childContextTypes: {
-      router:     React.PropTypes.func,
+      router:     React.PropTypes.object,
       routeDepth: React.PropTypes.number
     },
 

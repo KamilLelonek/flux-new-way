@@ -117,5 +117,5 @@ MakeOfferRequest.childContextTypes = {
 
 MakeOfferRequest.contextTypes = {
   flux:   React.PropTypes.object,
-  router: React.PropTypes.func
+  router: React.PropTypes.object
 };
