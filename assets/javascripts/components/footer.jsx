@@ -14,7 +14,7 @@ export default class extends React.Component {
     return (
       <Navbar fixedBottom>
         <Nav>
-          <NavItem href='http://kamil.lelonek.me/'>&copy; {this.currentYear()} Kamil Lelonek</NavItem>
+          <NavItem className='current-year' href='http://kamil.lelonek.me/'>&copy; {this.currentYear()} Kamil Lelonek</NavItem>
         </Nav>
         <Nav right>
           <NavItem href={this.API_URL}>API</NavItem>
